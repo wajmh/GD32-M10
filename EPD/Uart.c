@@ -11,19 +11,6 @@ static uint8_t rx_frame[UART_FRAME_LEN];
 static uint8_t rx_index;
 static volatile uint8_t sensor_data_ready;
 static uart_sensor_data_t sensor_data;
-volatile uint32_t uart_irq_count;
-volatile uint32_t uart_rx_byte_count;
-volatile uint32_t uart_rx_error_count;
-volatile uint8_t uart_temperature_status;
-volatile float uart_temperature;
-volatile uint8_t uart_co_status;
-volatile float uart_co;
-volatile uint8_t uart_co2_status;
-volatile float uart_co2;
-volatile uint8_t uart_oxygen_status;
-volatile float uart_oxygen;
-volatile uint8_t uart_methane_status;
-volatile float uart_methane;
 
 static uint16_t crc16_modbus(const uint8_t *data, uint16_t len)
 {
@@ -75,16 +62,6 @@ static void parse_sensor_frame(const uint8_t *frame)
     data.methane = read_float_be(&frame[24]);
 
     sensor_data = data;
-    uart_temperature_status = data.temperature_status;
-    uart_temperature = data.temperature;
-    uart_co_status = data.co_status;
-    uart_co = data.co;
-    uart_co2_status = data.co2_status;
-    uart_co2 = data.co2;
-    uart_oxygen_status = data.oxygen_status;
-    uart_oxygen = data.oxygen;
-    uart_methane_status = data.methane_status;
-    uart_methane = data.methane;
     sensor_data_ready = 1U;
 }
 
@@ -127,8 +104,6 @@ void usart1_receive_byte(uint8_t data)
 {
     uint16_t rx_crc;
     uint16_t calc_crc;
-
-    uart_rx_byte_count++;
 
     if(rx_index == 0U) {
         if(data != UART_HEADER0) {
@@ -183,14 +158,11 @@ uint8_t uart_sensor_data_get(uart_sensor_data_t *data)
 
 void USART1_IRQHandler(void)
 {
-    uart_irq_count++;
-
     if(RESET != usart_interrupt_flag_get(USART1, USART_INT_FLAG_RBNE)) {
         usart1_receive_byte((uint8_t)usart_data_receive(USART1));
     }
 
     if(RESET != usart_interrupt_flag_get(USART1, USART_INT_FLAG_RBNE_ORERR)) {
-        uart_rx_error_count++;
         usart_interrupt_flag_clear(USART1, USART_INT_FLAG_RBNE_ORERR);
     }
 }
