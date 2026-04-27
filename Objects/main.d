@@ -34,6 +34,6 @@
   ..\..\..\..\GD32L23x_Firmware_Library\GD32L23x_standard_peripheral\Include\gd32l23x_slcd.h \
   ..\..\..\..\GD32L23x_Firmware_Library\GD32L23x_standard_peripheral\Include\gd32l23x_lptimer.h \
   ..\..\..\..\GD32L23x_Firmware_Library\GD32L23x_standard_peripheral\Include\gd32l23x_vref.h \
-  ..\systick.h EPD\Display_EPD_W21_spi.h EPD\Display_EPD_W21.h \
-  EPD\Ap_29demo.h EPD\Motor.h D:\Keil5\ARM\ARMCLANG\include\stdio.h \
-  EPD\Uart.h
+  ..\systick.h GUI\GUI_Paint.h GUI\..\Fonts\fonts.h \
+  EPD\Display_EPD_W21_spi.h EPD\Display_EPD_W21.h EPD\Ap_29demo.h \
+  EPD\Motor.h D:\Keil5\ARM\ARMCLANG\include\stdio.h EPD\Uart.h
