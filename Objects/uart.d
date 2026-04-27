@@ -33,4 +33,5 @@
   ..\..\..\..\GD32L23x_Firmware_Library\GD32L23x_standard_peripheral\Include\gd32l23x_trng.h \
   ..\..\..\..\GD32L23x_Firmware_Library\GD32L23x_standard_peripheral\Include\gd32l23x_slcd.h \
   ..\..\..\..\GD32L23x_Firmware_Library\GD32L23x_standard_peripheral\Include\gd32l23x_lptimer.h \
-  ..\..\..\..\GD32L23x_Firmware_Library\GD32L23x_standard_peripheral\Include\gd32l23x_vref.h
+  ..\..\..\..\GD32L23x_Firmware_Library\GD32L23x_standard_peripheral\Include\gd32l23x_vref.h \
+  D:\Keil5\ARM\ARMCLANG\include\string.h
